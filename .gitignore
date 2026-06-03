@@ -1,0 +1,25 @@
+# Data & outputs (never commit patient-derived NIfTIs)
+data
+derivatives/
+external/
+*.nii
+*.nii.gz
+
+# Clinical metadata holds PHI-adjacent data (treated side, tremor scores) + full subject
+# list — never commit. Only the 2-row example template is tracked.
+config/clinical.csv
+
+# macOS / network-volume junk
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*.egg-info/
+.venv/
+env/
+
+# Notebook outputs are stripped; keep code only
+notebooks/**/output/
