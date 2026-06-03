@@ -59,3 +59,30 @@ worst-segmented cerebellar regions. Not evidence of a true null.
 
 Declaring significance now via one-sided p=0.025 would be HARKing (the composite was chosen
 after seeing I–IV/V win) — explicitly declined.
+
+## Corrected analysis & adversarial implementation audit (update)
+
+An adversarial code+stats audit found two flaws in the first responder analysis and they were
+fixed:
+- **Predictor contamination (S1):** the pooled "reserve" volume drew from post-lesion scans
+  for 46% of subjects. **Fixed → preop-only.** The corrected preop-only anterior reserve →
+  3-month imbalance is **OR=1.61 [1.04, 2.47], p=0.031 — unchanged**, so the bug did not drive
+  the result (the effect is consistent across timepoints).
+- **Collider design (S2):** responder-stratification conditions on a common effect of lesion
+  size. **Fixed → full-cohort reserve × continuous-response interaction model** instead of
+  stratifying.
+
+**Double dissociation (the decisive test):**
+- Reserve → imbalance: interaction-model main effect OR≈1.96, **p=0.009**; preop-only p=0.031.
+- Reserve × response interaction **p=0.058** (reserve matters *more* in better responders —
+  directionally supports the responder intuition; borderline).
+- Reserve → tremor **efficacy**: **p=0.614 (null)** — reserve predicts the *side effect*, not
+  the benefit. Mechanistically specific, not a generic "bad brain" confound.
+
+**Responder-stratified (corrected, covariate-adjusted), 3mo & 1yr:** directionally consistent
+(3mo adj OR=1.36, p=0.15; 1yr null) but underpowered and a collider design → demoted to
+descriptive. Responders vs non-responders do not differ in cerebellar volume (efficacy null).
+
+**Adjudication (agent panel):** probably real but fragile, single-cohort; ~55–65% replication
+probability; publish as a hypothesis-generating side-effect biomarker with the anatomical
+gradient + double dissociation as the headline, pre-registered confirmation (H3) as next step.

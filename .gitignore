@@ -19,6 +19,7 @@ __pycache__/
 .ipynb_checkpoints/
 *.egg-info/
 .venv/
+.venv-suit/
 env/
 
 # Notebook outputs are stripped; keep code only
