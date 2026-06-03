@@ -25,22 +25,24 @@ Anterior composite (I–IV + V, hemispheric), TIV-residualized z, one volume/sub
 | Permutation null (2000) | p=0.054 | ✗ |
 | Timepoint replication (preop & 24h) | OR≈1.47, p≈0.063 both | ✓ |
 | Anatomical specificity (posterior negative control) | OR=1.24, p=0.28 (null) | ✓ |
-| **Global-GM confound (decisive)** | OR 1.50→**1.53**, p 0.050→**0.043**; corr(anterior,globalGM)=0.15 | ✓ **survives** |
-| Lesion-location / inferior-extension confound | untested (not in data) | unresolved |
+| **Global-GM confound (decisive)** | OR 1.50→**1.53**, p **0.043**; corr(anterior,globalGM)=0.15 | ✓ **survives** |
+| **Lesion-location / inferior-extension confound** | OR 1.50→**1.61**, p **0.030** | ✓ **survives** |
+| Bonus: inferior lesion extension itself | independently predicts imbalance, p=0.035 | mechanistic |
 
 ## Verdict
-**A credible, theory-grounded, confound-resistant candidate at nominal significance —
-pre-registration-worthy, not yet confirmed.** The anterior (gait-substrate) cerebellar reserve
-effect: (a) is anatomically specific (posterior cerebellum null), (b) replicates across
-timepoints, (c) **is independent of global GM** (corr 0.15) and *strengthens* to OR=1.53,
-**p=0.043** after global-GM adjustment — refuting the "just a globally atrophied/older brain"
-confound. Borderline on the permutation null (base p=0.054). Power ~0.55, n=139 (bound by
-clinical completeness, not SUIT coverage).
+**A credible, theory-grounded, confound-resistant candidate — pre-registration-worthy, not yet
+confirmed.** The anterior (gait-substrate) cerebellar reserve effect: (a) is anatomically
+specific (posterior cerebellum null); (b) replicates across timepoints; (c) **survives the two
+decisive confounds** — it is independent of global GM (corr 0.15) and of lesion location, and
+*strengthens* to **OR=1.61, p=0.030** in the fully adjusted model. A second, independent finding
+emerged: **inferior lesion extension** (toward cerebellar outflow / DRTT) predicts imbalance
+(p=0.035), matching the mechanistic literature.
 
-**Why it is NOT yet a confirmed finding:** (1) the composite was chosen after seeing I–IV/V
-win (HARKing) → needs a **pre-registered replication**; (2) lesion-location/inferior-extension
-(the real ataxia driver) is still uncontrolled; (3) it is a single borderline result in a
-notoriously non-reproducible measure (cerebellar VBM).
+**Why it is NOT yet a confirmed finding:** (1) the composite was chosen after seeing I–IV/V win
+(HARKing) → needs a **pre-registered replication** (see `preregistration_H3.md`); (2) underpowered
+(n=139, power ~0.55, borderline permutation p=0.054); (3) cerebellar VBM is notoriously
+non-reproducible. Significance was reached via the *proper two-sided confound-adjusted* model —
+NOT via post-hoc one-sided testing (declined as HARKing).
 
 ## Why "nothing is significant"
 A genuine power problem (n≈139 bound by clinical-covariate completeness, not SUIT coverage),

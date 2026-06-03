@@ -56,11 +56,22 @@ def compute(cfg: dict) -> pd.DataFrame:
         data = np.asarray(img.dataobj) > 0
         vox_mm3 = float(np.abs(np.linalg.det(img.affine[:3, :3])))
         vol_mm3 = data.sum() * vox_mm3
+        # lesion location in world (RAS) coords: centroid + inferior extension.
+        # Inferior extension toward cerebellar outflow (DRTT / zona incerta) is the
+        # mechanistic ataxia driver; lower world-z = more inferior.
+        loc = {}
+        if data.sum() > 0:
+            ijk = np.array(np.where(data))               # (3, nvox) voxel coords
+            world = nib.affines.apply_affine(img.affine, ijk.T)  # (nvox, 3) RAS mm
+            cx, cy, cz = world.mean(axis=0)
+            loc = {"centroid_x": float(cx), "centroid_y": float(cy), "centroid_z": float(cz),
+                   "inferior_z_min": float(world[:, 2].min()),   # most inferior voxel (mm)
+                   "frac_below_acpc": float((world[:, 2] < 0).mean())}  # fraction inferior to AC-PC
         rows.append({"subject": _norm_subject(m.group(1).upper()),
                      "lesion_volume_mm3": vol_mm3,
                      "lesion_volume_cm3": vol_mm3 / 1000.0,
                      "treated_side": _side_from_mask(img),
-                     "mask": f})
+                     **loc, "mask": f})
     df = pd.DataFrame(rows).drop_duplicates("subject")
     out = cfg["derivatives"] / "lesion_burden.csv"
     out.parent.mkdir(parents=True, exist_ok=True)
