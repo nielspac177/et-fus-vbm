@@ -86,7 +86,7 @@ for outcome in ["imbalance_3month", "imbalance_1year"]:
             map_paths=dd["map_path"].tolist(), design=dd, mask_path=str(mask_path),
             out_dir=out_dir, outcome_col=outcome,
             covar_cols=["age", "sex", "TIV", "log10_lesion"],
-            n_permutations=2000, tfce=True, two_sided=True, prefix=region)
+            n_permutations=2000, tfce=False, two_sided=True, prefix=region)
         fwe = nib.load(paths["fwe"]).get_fdata(); t = nib.load(paths["t"]).get_fdata()
         nsig = int((fwe > 0.95).sum())
         # peak: most negative t (lower volume -> more imbalance) within mask
