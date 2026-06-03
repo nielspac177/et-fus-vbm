@@ -98,7 +98,10 @@ def run(cfg, timepoint="ses-post3mo", outcome_col="tremor_improvement", binary=F
     covar_cols = [c for c in ["age", "sex", "tiv", "tremor_pre"] if c in clin.columns]
     lesion = [c for c in LESION_COLS if c in clin.columns]
     has_lesion = len(lesion) > 0
-    covars = clin[covar_cols + lesion].apply(pd.to_numeric, errors="coerce")
+    covars = clin[covar_cols + lesion].copy()
+    if "sex" in covars:  # 'M'/'F' (or 1/2) -> numeric so it survives to_numeric
+        covars["sex"] = covars["sex"].map({"M": 0, "F": 1, "1": 0, "2": 1, 1: 0, 2: 1})
+    covars = covars.apply(pd.to_numeric, errors="coerce")
 
     res = []
     for roi in change.columns:
