@@ -26,7 +26,7 @@ def load_config(path: str | Path) -> dict:
 
     for key in ("data_root", "manifest_csv", "derivatives", "upstream_root",
                 "mni_mask", "ctrl_dist", "roi_dir", "demographics_csv",
-                "cerebellar_csv", "clinical_csv"):
+                "cerebellar_csv", "clinical_csv", "lesion_masks_dir"):
         if key in cfg:
             cfg[key] = _resolve(cfg[key])
     return cfg

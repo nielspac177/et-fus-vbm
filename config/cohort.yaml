@@ -22,6 +22,15 @@ mni_mask: external/vbm/assets/MNI152_T1_2mm_brain_mask.nii
 ctrl_dist: external/vbm/assets/ctrl_dist        # GM/WM mean+std at 2 mm MNI
 roi_dir: external/vbm/rois                       # ROI atlases for regional tables
 
+# Lesion masks (ET cohort ONLY — never the PD `pd*` masks under 'FUS FC v1/').
+# Point this at your ET lesion-mask directory; etfvbm.lesion derives volume + treated side.
+lesion_masks_dir: null
+lesion_glob: "*ET*.nii*"
+
+# Schulz-style analysis: the acute timepoint whose cerebellar volumes predict outcome.
+# The cerebellum is remote from the thalamic lesion, so 24 h is a valid acute baseline (T1).
+predictor_session: ses-post24h
+
 # Session -> timepoint mapping. Pre-op is the within-subject reference (Path C).
 reference_session: ses-preop
 post_sessions:

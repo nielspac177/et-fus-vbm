@@ -18,6 +18,7 @@ Decisions driving `et-fus-vbm`, with the context that forced each. Status: Accep
 | 0010 | One pre-registered confirmatory contrast; rest exploratory | Accepted |
 | 0011 | Measure lesion burden before any association claim | Proposed (blocking) |
 | 0012 | No reprocessing for v1 (use existing GM/WM + SUIT volumes) | Accepted |
+| 0013 | Schulz-style acute (24 h) cerebellar volume → outcome ordinal regression | Accepted |
 
 ---
 
@@ -72,6 +73,17 @@ causes BOTH atrophy and outcome; unmeasured, every association is confounded. We
 lesion masks for this cohort. *Decision:* before any association *claim*, obtain a lesion
 burden measure — segment cavity+ring in-cohort (manual/semi-auto, inter-rater on a subset)
 or use treatment-dose surrogates (n sonications, energy, max temperature) as covariate.
+
+**ADR-0013 — Schulz-style acute-baseline ordinal regression** (`etfvbm.replicate_schulz`).
+*Context:* user requested replicating Schulz et al. 2022 *Brain Comms* fcac203 (acute-stroke
+regional cerebellar volumes → late functional outcome via median-split ordinal logistic
+regression). *Decision:* use the **24 h** scan as the acute baseline T1 — valid here because
+the cerebellum is **remote** from the thalamic lesion, so 24 h cerebellar volume is NOT
+edema-corrupted (this refines ADR-0002, which bars 24 h only for the lesion region itself).
+Per-region median split (larger=ref); ordinal logit of outcome ~ group + log10(lesion_vol) +
+age_resid + ICV_resid (+ baseline severity adjusted model); age/ICV residualized vs the
+regional volume; OR + 95% CI + p; LOOA robustness; FDR across regions. Needs lesion masks
+(ADR-0011) + clinical outcomes.
 
 **ADR-0012 — No reprocessing for v1.** Use existing deepmriprep GM/WM maps + SUIT volumes.
 SUIT-VBM, dentate (T2starw/QSM), and CAT12 true-CSF are deferred (~2 days CPU each).
